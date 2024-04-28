@@ -36,7 +36,7 @@ int main()
     if (cnt[c] == 0)
         pq.push(result + 1);
     
-    while (right < n + k-1)
+    while (right < n + k - 1)
     {
         a = belt[left++], b = belt[++right];
 

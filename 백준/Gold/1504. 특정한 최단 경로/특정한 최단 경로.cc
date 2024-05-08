@@ -9,9 +9,15 @@ int x, y;
 vector<pair<int, int>> v[MAX];
 bool visited[MAX];
 int dist[MAX];
+
+void reset()
+{
+    for (int i = 0; i < n; i++)
+        dist[i + 1] = INF;
+}
 void dijkstra(int x)
 {
-
+    reset();
     dist[x] = 0;
     priority_queue<pair<int, int>> pq;
 
@@ -41,6 +47,8 @@ void dijkstra(int x)
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
 
     cin >> n >> m;
     int a, b, c;
@@ -53,57 +61,35 @@ int main()
         v[b].push_back({a, c});
     }
     cin >> x >> y;
-    
-    
-    bool flag1 = 1, flag2 = 1;
 
-    for (int i = 0; i < n; i++)
-        dist[i + 1] = INF;
     dijkstra(1);
-    // 무한대로 만들어놓고, 1에서 다른 노드들 까지 거리 구하기
 
     int route1 = dist[x]; // 1에서 x까지의 거리
-
     int route2 = dist[y]; // 1에서 y까지의 거리
-
-    if (route1 == INF)
-        flag1 = false; // 1~n까지에서 x를 안거쳤다면
-
-    if (route2 == INF)
-        flag2 = false; // 1~n까지에서 y를 안거쳤다면 flag2를 false로
-
-    for (int i = 0; i < n; i++)
-        dist[i + 1] = INF; // 다시 초기화하고
-    dijkstra(x); // x부터 n까지의 거리 구하기
-
-    if (flag1 == true)
-        route1 += dist[y]; // x를 거쳤었다면 1에서 x까지에서 x에서 y까지도 더함
-
-    if (flag2 == true)
-        route2 += dist[y]; // y를 거쳤었다면, 1에서y까지에서 x에서 y까지도 더함
-
-    for (int i = 0; i < n; i++)
-        dist[i + 1] = INF; // 다시 초기화하고
-    dijkstra(y);
-
-    if (flag1 = true)
-        route1 += dist[n];
-    
-    for (int i = 0; i < n; i++)
-        dist[i + 1] = INF; // 다시 초기화하고
-    dijkstra(x);
-    
-    if (flag2 = true)
-        route2 += dist[n];
-    
-    int ans;
-    
-    if(flag1==false && flag2==false)ans=-1;
-    else ans=min(route1,route2);
-
-    if(ans >= INF){
-        ans=-1;
+    //이게 되는 이유는? x,y와 다른 노드들과의 연결이 최대 하나이기 떄문
+    if (route1 == INF || route2 == INF)
+    {
+        cout << -1;
+        return 0;
     }
 
-    cout<<ans;
+    dijkstra(x); // x부터 노드들 까지의 거리
+
+    route1 += dist[y];
+    route2 += dist[y] + dist[n]; //1에서y, y에서 x간다음에 n까지 가는 거
+
+
+    dijkstra(y); // y에서 노드들 까지의 거리 구하고
+    route1 += dist[n]; // 1에서 x, x에서 y간다음에 y에서n까지 가는 거
+
+    int ans;
+
+    ans = min(route1, route2);
+    //둘중에 더 작은 것
+    if (ans >= INF)
+    {
+        ans = -1;
+    }
+
+    cout << ans;
 }

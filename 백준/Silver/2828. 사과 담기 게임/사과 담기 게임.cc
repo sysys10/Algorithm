@@ -5,30 +5,26 @@ vector<int> apple;
 int main()
 {
     cin >> n >> m >> j;
+     int left = 1;
+    int right = m ;
+    int cnt = 0;
     for (int i = 0; i < j; i++)
     {
         int a;
         cin >> a;
-        apple.push_back(a);
-    }
-    int left = 1;
-    int right = m ;
-    int cnt = 0;
-    for (int i = 0; i < apple.size(); i++)
-    {
-        if (apple[i] < left)
+        if (a < left)
         {
-            int dist = left - apple[i];
+            int dist = left - a;
             cnt += dist;
-            left = apple[i];
+            left = a;
             right -= dist;
         }
-        else if (apple[i] > right)
+        else if (a > right)
         {
-            int dist = apple[i]-right;
+            int dist = a-right;
             cnt += dist;
             left += dist;
-            right = apple[i];
+            right = a;
         }
     }
     cout<<cnt;

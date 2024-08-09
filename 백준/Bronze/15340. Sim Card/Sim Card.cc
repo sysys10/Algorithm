@@ -4,16 +4,16 @@ using namespace std;
 
 int main() {
   ios::sync_with_stdio(false);
-  cin.tie(nullptr);
+  cin.tie(0);
 
-  int usageCall, usageData;
-  while (cin >> usageCall >> usageData) {
-    if (usageCall == 0 && usageData == 0) break ;
-    int costParsTel = 30 * usageCall + 40 * usageData;
-    int costParsCell = 35 * usageCall + 30 * usageData;
-    int costParsPhone = 40 * usageCall + 20 * usageData;
+  int a, b;
+  while (cin >> a >> b) {
+    if (a == 0 && b == 0) break ;
+    int q = 30 * a + 40 * b;
+    int w = 35 * a + 30 * b;
+    int e = 40 * a + 20 * b;
 
-    int minCost = min({costParsTel, costParsCell, costParsPhone});
+    int minCost = min({q, w, e});
     cout << minCost << "\n";
   }
 

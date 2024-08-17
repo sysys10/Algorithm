@@ -13,7 +13,7 @@ void solve()
         v.push_back(a);
     }
     sort(v.begin(), v.end());
-    for (int i = 1; i <= v[n - 1]; i++)
+    for (int i = 1; i <= v[0]; i++)
     {
         bool flag = 1;
         for (int a = 0; a < n; a++)

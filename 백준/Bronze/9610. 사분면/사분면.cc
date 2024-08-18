@@ -1,14 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int fac(int num)
-{
-    int a = 1;
-    for (int i = 1; i <= num; i++)
-        a *= i;
-    return a;
-}
-
 void solve()
 {
     int n;
@@ -18,23 +10,11 @@ void solve()
     {
         int a, b;
         cin >> a >> b;
-        if (a == 0 || b == 0)
-        {
-            arr[4]++;
-            continue;
-        }
-        bool flagx = false, flagy = false;
-        if (a > 0)
-            flagx = true;
-        if (b > 0)
-            flagy = true;
-        if (flagx && flagy)
-            arr[0]++;
-        if (!flagx && flagy)
-            arr[1]++;
-        if (!flagx && !flagy)
-            arr[2]++;
-        if (flagx && !flagy)
+        
+        (a == 0 || b == 0) ? arr[4]++ : 
+            (a > 0 && b > 0) ? arr[0]++ :
+            (a < 0 && b > 0) ? arr[1]++ :
+            (a < 0 && b < 0) ? arr[2]++ :
             arr[3]++;
     }
     for (int i = 0; i < 4; i++)

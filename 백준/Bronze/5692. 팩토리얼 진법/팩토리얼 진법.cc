@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<long long> v(100001);
-
 int fac(int num)
 {
     int a = 1;
@@ -10,10 +8,8 @@ int fac(int num)
     return a;
 }
 
-int main()
+void solve()
 {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
     while (1)
     {
         int a;
@@ -31,4 +27,11 @@ int main()
         }
         cout << sum << '\n';
     }
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    solve();
 }

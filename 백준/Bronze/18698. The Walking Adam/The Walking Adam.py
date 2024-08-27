@@ -1,7 +1,6 @@
 for _ in range(int(input())):
-    s = input()
     cnt = 0 
-    for c in s:
+    for c in input():
         if c == 'D':
             break
         else: cnt+=1
